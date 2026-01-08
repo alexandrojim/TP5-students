@@ -41,11 +41,17 @@ Task: Create a SHAP Summary Plot.
 
 ```python
 # Initialize the SHAP Explainer
-explainer = shap.Explainer(model)
-shap_values = explainer(X_test)
+# We use a small background sample to speed up computation
+background = shap.sample(X_train, 100) 
+explainer = shap.Explainer(model.predict_proba, background)
+
+# Calculate SHAP values for a subset of test data (slow otherwise!)
+X_test_sample = X_test.iloc[:100]
+shap_values = explainer(X_test_sample)
+shap_values = shap_values[..., 1]
 
 # Visualize global feature importance
-shap.summary_plot(shap_values, X_test)
+shap.summary_plot(shap_values, X_test_sample)
 ```
 
 Student Analysis:
