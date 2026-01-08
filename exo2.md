@@ -8,7 +8,7 @@
 ## Prerequisites
 You will need a Python environment with the following libraries:
 ```bash
-pip install numpy pandas matplotlib xgboost shap sklearn
+pip install numpy pandas matplotlib xgboost shap scikit-learn
 ```
 
 ## 1. The Scenario: The Automated Loan Officer
